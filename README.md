@@ -18,7 +18,7 @@
 | 0:55–1:05 | 休憩・フォロー |
 | 1:05–1:40 | Git/GitHub ハンズオン（clone → branch → commit → push → PR） |
 | 1:40–1:50 | CI デモ（オーナー設置の CI を **見るだけ**） |
-| 1:50–2:00 | Cursor の AI 機能紹介、まとめ |
+| 1:50–2:00 | タグ・リリースの概要（**デモのみ**）、Cursor の AI 機能紹介、まとめ |
 
 ## ドキュメント
 
@@ -29,6 +29,7 @@
 | [docs/03_packages.md](docs/03_packages.md) | パッケージ管理（Pkg・Project.toml） |
 | [docs/04_git_github.md](docs/04_git_github.md) | Cursor での Git/GitHub 操作 |
 | [docs/05_ci.md](docs/05_ci.md) | CI の見方（参加者は設定しない） |
+| [docs/06_tags_releases.md](docs/06_tags_releases.md) | タグ・GitHub Releases（説明・デモ用） |
 | [submissions/README.md](submissions/README.md) | **PR 課題**の説明 |
 
 ## 参加者が最初にやること

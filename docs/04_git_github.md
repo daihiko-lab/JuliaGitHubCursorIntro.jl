@@ -16,6 +16,7 @@
 | **commit** | 変更の保存ポイント（スナップショット） |
 | **push** | 自分の commit を GitHub に送る |
 | **PR** | 「この枝を main に取り込んでください」という提案 |
+| **タグ** | 特定のコミットに付ける版の目印（詳細は [06_tags_releases.md](06_tags_releases.md)） |
 
 今回の PR 課題の詳細は [submissions/README.md](../submissions/README.md) です。
 

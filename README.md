@@ -59,4 +59,4 @@
 
 ## ライセンス
 
-このリポジトリに載せる **ライセンス (`LICENSE` ファイルなど)** はオーナーが決定します。一般的な考え方・MIT/CC/Zenodo の話は [docs/08_licensing.md](docs/08_licensing.md) を読んでください (法的助言ではありません) 。
+このリポジトリは [**MIT License**](LICENSE) の下で公開されています。MIT / CC / Zenodo などの考え方は [docs/08_licensing.md](docs/08_licensing.md) も参照してください (法的助言ではありません) 。

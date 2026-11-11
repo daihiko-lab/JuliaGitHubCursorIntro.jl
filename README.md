@@ -1,11 +1,11 @@
-# julia-github-cusor-intro
+# julia-github-cursor-intro
 
-<!-- リポジトリ名変更時: 文字列 julia-github-cusor-intro / daihiko-lab/julia-github-cusor-intro を検索 (詳細は docs/05_ci.md §8) -->
+<!-- リポジトリ名変更時: 文字列 julia-github-cursor-intro / daihiko-lab/julia-github-cursor-intro を検索 (詳細は docs/05_ci.md §8) -->
 
 <p>
-<a href="https://github.com/daihiko-lab/julia-github-cusor-intro/actions/workflows/CI.yml"><img src="https://img.shields.io/github/actions/workflow/status/daihiko-lab/julia-github-cusor-intro/CI.yml?branch=main&amp;style=flat-square&amp;logo=githubactions&amp;logoColor=white&amp;label=Test" alt="Test"></a>
-<a href="https://github.com/daihiko-lab/julia-github-cusor-intro/actions/workflows/CI.yml"><img src="https://img.shields.io/github/actions/workflow/status/daihiko-lab/julia-github-cusor-intro/CI.yml?branch=main&amp;job=jetls&amp;style=flat-square&amp;logo=githubactions&amp;logoColor=white&amp;label=JETLS" alt="JETLS"></a>
-<a href="https://codecov.io/gh/daihiko-lab/julia-github-cusor-intro"><img src="https://img.shields.io/codecov/c/github/daihiko-lab/julia-github-cusor-intro?style=flat-square&amp;logo=codecov&amp;logoColor=white" alt="Codecov"></a>
+<a href="https://github.com/daihiko-lab/julia-github-cursor-intro/actions/workflows/CI.yml"><img src="https://img.shields.io/github/actions/workflow/status/daihiko-lab/julia-github-cursor-intro/CI.yml?branch=main&amp;style=flat-square&amp;logo=githubactions&amp;logoColor=white&amp;label=Test" alt="Test"></a>
+<a href="https://github.com/daihiko-lab/julia-github-cursor-intro/actions/workflows/CI.yml"><img src="https://img.shields.io/github/actions/workflow/status/daihiko-lab/julia-github-cursor-intro/CI.yml?branch=main&amp;job=jetls&amp;style=flat-square&amp;logo=githubactions&amp;logoColor=white&amp;label=JETLS" alt="JETLS"></a>
+<a href="https://codecov.io/gh/daihiko-lab/julia-github-cursor-intro"><img src="https://img.shields.io/codecov/c/github/daihiko-lab/julia-github-cursor-intro?style=flat-square&amp;logo=codecov&amp;logoColor=white" alt="Codecov"></a>
 <a href="https://docs.julialang.org/en/v1/"><img src="https://img.shields.io/badge/Julia-1.13+-9558B2?style=flat-square&amp;logo=julia&amp;logoColor=white" alt="Julia 1.13+"></a>
 <a href="https://github.com/fredrikekre/Runic.jl"><img src="https://img.shields.io/badge/code_style-%E1%9A%B1%E1%9A%A2%E1%9A%BE%E1%9B%81%E1%9A%B2-black" alt="code style: runic"></a>
 <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License: MIT"></a>
@@ -17,7 +17,7 @@
 
 | 種類 | 説明 |
 |------|------|
-| **このリポジトリ (Public)** | 教材の **公開版** です。[`daihiko-lab/julia-github-cusor-intro`](https://github.com/daihiko-lab/julia-github-cusor-intro) で誰でも閲覧・clone できます (旧名 `julia-github-intro-2026` からは GitHub がリダイレクトします) 。 |
+| **このリポジトリ (Public)** | 教材の **公開版** です。[`daihiko-lab/julia-github-cursor-intro`](https://github.com/daihiko-lab/julia-github-cursor-intro) で誰でも閲覧・clone できます (旧名 `julia-github-intro-2026` や誤記 `julia-github-cusor-intro` からは GitHub がリダイレクトします) 。 |
 | **当日のハンズオン用 (Private)** | ゼミ当日の PR 演習は、オーナーが用意する **別の Private リポジトリ** で行います (おおむねこの内容の複製) 。参加者はそちらに **コラボレーター招待** され、clone・push・PR は **ハンズオン用の URL** に対して行います。 |
 
 複製の具体的な手順 (テンプレート化、Organization 内の複製、Import など) は **オーナーが決め、当日までに URL を案内** します。予習は Public 版を clone してもかまいませんが、**課題の PR は案内されたハンズオン用リポジトリへ** 出してください ([docs/04_git_github.md](docs/04_git_github.md)) 。
@@ -67,7 +67,7 @@
    julia examples/analyze_survey.jl
    ```
 
-(任意) 事前予習として、公開版 `https://github.com/daihiko-lab/julia-github-cusor-intro` を clone して読んでも構いません。
+(任意) 事前予習として、公開版 `https://github.com/daihiko-lab/julia-github-cursor-intro` を clone して読んでも構いません。
 
 ## リポジトリの主な場所
 

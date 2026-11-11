@@ -22,7 +22,7 @@
 
 ### Public 教材と Private ハンズオン
 
-- **公開教材**: [daihiko-lab/julia-github-cusor-intro](https://github.com/daihiko-lab/julia-github-cusor-intro) (Public。旧 URL からリダイレクトされます) 
+- **公開教材**: [daihiko-lab/julia-github-cursor-intro](https://github.com/daihiko-lab/julia-github-cursor-intro) (Public。旧 URL からリダイレクトされます) 
 - **当日の演習**: オーナーが複製した **Private リポジトリ** で PR を出します。clone する URL は **オーナーの案内** に従ってください (テンプレート複製か Organization 内コピーか等はオーナーが選択します) 
 
 以下の手順では、`<ハンズオン用リポジトリの URL>` をオーナーから受け取った clone URL に置き換えてください。
@@ -49,7 +49,7 @@ cd <clone したフォルダ名>
 
 初回だけ GitHub へのログインを求められることがあります (ブラウザ認証など) 。
 
-(予習) 公開版のみ読みたい場合: `git clone https://github.com/daihiko-lab/julia-github-cusor-intro.git`
+(予習) 公開版のみ読みたい場合: `git clone https://github.com/daihiko-lab/julia-github-cursor-intro.git`
 
 ---
 

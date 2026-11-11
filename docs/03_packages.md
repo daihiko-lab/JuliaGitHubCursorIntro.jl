@@ -93,7 +93,13 @@ Manifest だけあっても、**Julia のマイナーバージョンやビルド
 
 ---
 
-## 6. 確認クイズ (自分用) 
+## 6. General に載っていない GitHub パッケージ
+
+`CSV` のように **レジストリ名だけ** で足せるのは登録済みパッケージです。研究室の試作や GitHub だけにある `.jl` リポジトリは **URL で `add`** します。`rev` (タグ・ブランチ・コミット) 、`[sources]`、`Manifest.toml` の `repo-url` などは **[docs/09_packages_from_github.md](09_packages_from_github.md)** で扱います (ゼミ本編のあと・予習用でも可) 。
+
+---
+
+## 7. 確認クイズ (自分用) 
 
 1. 今の環境を確認する `pkg>` コマンドは？ → `status`  
 2. チームメンバーが clone したあと最初に打つべきは？ → `activate .` と `instantiate`  
@@ -104,3 +110,5 @@ Manifest だけあっても、**Julia のマイナーバージョンやビルド
 ## 次のステップ
 
 [docs/04_git_github.md](04_git_github.md) で、`Project.toml` を変更したら **コミット → push → PR** する流れを体験します。
+
+GitHub 未登録パッケージを依存に入れる詳細 → [docs/09_packages_from_github.md](09_packages_from_github.md)

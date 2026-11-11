@@ -48,6 +48,7 @@
 | [docs/06_tags_releases.md](docs/06_tags_releases.md) | タグ・GitHub Releases (説明・デモ用) |
 | [docs/07_github_for_julia.md](docs/07_github_for_julia.md) | Julia 向け GitHub 機能コラム (**発展・読み物**) |
 | [docs/08_licensing.md](docs/08_licensing.md) | ライセンスの基礎 (コード・データ・Zenodo) |
+| [docs/09_packages_from_github.md](docs/09_packages_from_github.md) | General 未登録パッケージを GitHub から `add` する |
 | [submissions/README.md](submissions/README.md) | **PR 課題**の説明 |
 
 ## 参加者が最初にやること

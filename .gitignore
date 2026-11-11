@@ -21,6 +21,9 @@ deps/downloads/
 deps/usr/
 deps/src/
 
+# actionlint の download スクリプトが誤ってルートに置いたバイナリ (CI は RUNNER_TEMP に取得)
+/actionlint
+
 # ローカルでの実行出力 (参加者が図を PR に載せる場合は submissions 等に保存すれば追跡可能) 
 output/
 *.tmp

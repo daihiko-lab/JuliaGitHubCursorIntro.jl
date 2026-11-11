@@ -24,8 +24,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: julia-actions/setup-julia@v2
+      - uses: actions/checkout@v7
+      - uses: julia-actions/setup-julia@v3
         with:
           version: "1"
       - uses: fredrikekre/runic-action@v1
@@ -41,10 +41,10 @@ jobs:
     env:
       JULIA_CPU_TARGET: "generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1);x86-64-v4,-rdrnd,base(1)"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - id: files
         run: echo "list=$(./.github/jetls-check.sh --print-files)" >> "$GITHUB_OUTPUT"
-      - uses: julia-actions/setup-julia@v2
+      - uses: julia-actions/setup-julia@v3
         with:
           version: "1.13"
       - name: Log runner CPU
@@ -56,7 +56,7 @@ jobs:
           tag="$(printf '%s' "$JULIA_CPU_TARGET" | sha256sum | cut -c1-12)"
           echo "julia=${ver}" >> "$GITHUB_OUTPUT"
           echo "cputarget=${tag}" >> "$GITHUB_OUTPUT"
-      - uses: julia-actions/cache@v2
+      - uses: julia-actions/cache@v3
         with:
           cache-name: julia-cache;workflow=${{ github.workflow }};job=${{ github.job }};cputarget=${{ steps.runner.outputs.cputarget }};julia=${{ steps.runner.outputs.julia }}
           cache-scratchspaces: false
@@ -83,11 +83,11 @@ jobs:
         os:
           - ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: julia-actions/setup-julia@v2
+      - uses: actions/checkout@v7
+      - uses: julia-actions/setup-julia@v3
         with:
           version: ${{ matrix.version }}
-      - uses: julia-actions/cache@v2
+      - uses: julia-actions/cache@v3
         with:
           cache-scratchspaces: false
           delete-old-caches: false
@@ -101,7 +101,7 @@ jobs:
           directories: src
       - name: Upload coverage to Codecov
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v7
         with:
           files: lcov.info
           slug: ${{ github.repository }}

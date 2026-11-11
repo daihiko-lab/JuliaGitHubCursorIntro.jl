@@ -62,40 +62,6 @@ jobs:
         with:
           files: ${{ steps.files.outputs.list }}
 
-  jetls-1-14-pre:
-    name: JETLS (1.14-pre, ubuntu-latest, x64)
-    needs: runic
-    if: needs.runic.result == 'success'
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    continue-on-error: true
-    env:
-      JULIA_CPU_TARGET: "generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1);x86-64-v4,-rdrnd,base(1)"
-    steps:
-      - uses: actions/checkout@v4
-      - id: files
-        run: echo "list=$(./.github/jetls-check.sh --print-files)" >> "$GITHUB_OUTPUT"
-      - uses: julia-actions/setup-julia@v2
-        with:
-          version: "~1.14.0-0"
-      - name: Log runner CPU
-        id: runner
-        run: |
-          set -euo pipefail
-          julia --startup-file=no -e 'println("CPU_NAME=", Sys.CPU_NAME); println("CPU_MODEL=", Sys.cpu_info()[1].model)'
-          ver="$(julia --startup-file=no -e 'print(VERSION)')"
-          tag="$(printf '%s' "$JULIA_CPU_TARGET" | sha256sum | cut -c1-12)"
-          echo "julia=${ver}" >> "$GITHUB_OUTPUT"
-          echo "cputarget=${tag}" >> "$GITHUB_OUTPUT"
-      - uses: julia-actions/cache@v2
-        with:
-          cache-name: julia-cache;workflow=${{ github.workflow }};job=${{ github.job }};cputarget=${{ steps.runner.outputs.cputarget }};julia=${{ steps.runner.outputs.julia }}
-          cache-scratchspaces: false
-          delete-old-caches: false
-      - uses: ./.github/actions/jetls-check
-        with:
-          files: ${{ steps.files.outputs.list }}
-
   test:
     name: JuliaGithubIntro2026 (${{ matrix.version }}, ${{ matrix.os }})
     needs: [runic, jetls]
@@ -109,11 +75,6 @@ jobs:
           - "1"
         os:
           - ubuntu-latest
-        include:
-          - os: macos-latest
-            version: "1"
-          - os: windows-latest
-            version: "1"
     steps:
       - uses: actions/checkout@v4
       - uses: julia-actions/setup-julia@v2

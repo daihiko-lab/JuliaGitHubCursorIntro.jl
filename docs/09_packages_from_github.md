@@ -6,7 +6,7 @@
 
 本教材リポジトリ自体も General には登録しません ( [03_packages.md](03_packages.md) 参照) 。**依存として** 別の GitHub 上の `.jl` リポジトリを `add` する手順がこの章の主題です。
 
-公式の仕様は [Pkg.jl — Managing Packages (Adding unregistered packages) ](https://pkgdocs.julialang.org/v1/managing-packages/#Adding-unregistered-packages) および [API `Pkg.add`](https://pkgdocs.julialang.org/v1/api/#Pkg.add) を参照してください。VM 上の Julia **1.13.3** で記載コマンドを実行し、出力の雰囲気を確認しています。
+公式の仕様は [Pkg.jl — Managing Packages (Adding unregistered packages) ](https://pkgdocs.julialang.org/v1/managing-packages/#Adding-unregistered-packages) および [API `Pkg.add`](https://pkgdocs.julialang.org/v1/api/#Pkg.add) を参照してください。本稿の API 名やフィールド名は Julia **1.13** 系の Pkg 公式ドキュメントに沿って記しています (本教材 CI も JETLS で 1.13 を使用) 。
 
 ---
 
@@ -18,13 +18,13 @@
 
 ```
 ] activate .
-] add https://github.com/fredrikekre/ImportMacros.jl
+] add https://github.com/daihiko-lab/SomePackage.jl
 ```
 
 登録済みパッケージと同様、末尾に **`#ブランチ名`** や **`#コミットSHA`** を付けられます (次章) 。
 
 ```
-] add https://github.com/fredrikekre/ImportMacros.jl#v1.0.0
+] add https://github.com/daihiko-lab/SomePackage.jl#v1.0.0
 ```
 
 ### Julia プログラムから (非 REPL)
@@ -32,22 +32,22 @@
 ```julia
 using Pkg
 Pkg.activate(".")
-Pkg.add(url = "https://github.com/fredrikekre/ImportMacros.jl")
+Pkg.add(url = "https://github.com/daihiko-lab/SomePackage.jl")
 ```
 
-Julia 1.13 で上記を実行すると、おおむね次のような流れになります (抜粋) 。
+成功すると、おおむね次のようなメッセージが出ます (パッケージ名・UUID・追跡 ref は環境ごとに異なります) 。
 
 ```
-     Cloning git-repo `https://github.com/fredrikekre/ImportMacros.jl`
+     Cloning git-repo `https://github.com/daihiko-lab/SomePackage.jl`
     Updating …/Project.toml
-  [92a963f6] + ImportMacros v1.0.0 `https://github.com/fredrikekre/ImportMacros.jl#master`
+  [xxxxxxxx] + SomePackage v0.1.0 `https://github.com/daihiko-lab/SomePackage.jl#main`
     Updating …/Manifest.toml
-  [92a963f6] + ImportMacros v1.0.0 `https://github.com/fredrikekre/ImportMacros.jl#master`
+  [xxxxxxxx] + SomePackage v0.1.0 `https://github.com/daihiko-lab/SomePackage.jl#main`
 ```
 
-> **例のパッケージ**: [ImportMacros.jl](https://github.com/fredrikekre/ImportMacros.jl) は General に載っていない小さなパッケージで、Pkg のドキュメントでも例としてよく使われます。ゼミ用の練習でもそのまま使えますが、**本番の研究プロジェクトでは README のライセンスとメンテ状況を確認** してください。
+**練習用 URL** は、General 未登録の **研究室が管理するリポジトリ** か、同僚から許可を得た試作パッケージを使ってください。**本番の研究プロジェクトでは README のライセンスとメンテ状況を確認** してから `add` します。
 
-リポジトリ直下がパッケージ根ではない場合は、**サブディレクトリ** を `:` で指定します (例: `] add https://github.com/timholy/SnoopCompile.jl.git:SnoopCompileCore`) 。詳細は [Adding a package in a subdirectory of a repository](https://pkgdocs.julialang.org/v1/managing-packages/#Adding-a-package-in-a-subdirectory-of-a-repository) 。
+リポジトリ直下がパッケージ根ではない場合は、**サブディレクトリ** を `:` で指定します (例: `] add https://github.com/daihiko-lab/BigProject.jl:SubPackage`) 。詳細は [Adding a package in a subdirectory of a repository](https://pkgdocs.julialang.org/v1/managing-packages/#Adding-a-package-in-a-subdirectory-of-a-repository) 。
 
 ---
 
@@ -57,9 +57,9 @@ Julia 1.13 で上記を実行すると、おおむね次のような流れにな
 
 | 方法 | REPL 例 | `Pkg.add` 例 |
 |------|---------|----------------|
-| ブランチ (既定は多くの場合 `master` / `main`) | `add https://github.com/…/Pkg.jl` | `Pkg.add(url = "…", rev = "master")` |
-| **タグ** (Git の tag。GitHub の Release と対応することが多い) | `add https://github.com/…/Pkg.jl#v1.0.0` | `Pkg.add(url = "…", rev = "v1.0.0")` |
-| **コミット SHA** (先頭数文字でも可) | `add https://github.com/…/Pkg.jl#1f189fb` | `Pkg.add(url = "…", rev = "1f189fb")` |
+| ブランチ (既定は多くの場合 `master` / `main`) | `add https://github.com/OWNER/SomePackage.jl` | `Pkg.add(url = "…", rev = "main")` |
+| **タグ** (Git の tag。GitHub の Release と対応することが多い) | `add https://github.com/OWNER/SomePackage.jl#v1.0.0` | `Pkg.add(url = "…", rev = "v1.0.0")` |
+| **コミット SHA** (先頭数文字でも可) | `add https://github.com/OWNER/SomePackage.jl#abc1234` | `Pkg.add(url = "…", rev = "abc1234")` |
 
 タグを指す Git の考え方は [06_tags_releases.md](06_tags_releases.md) と同じです。Pkg が追跡するのは **リモート Git 上の ref** であり、GitHub の Release ページそのものではありません (多くの人がタグ `v1.0.0` を Release に添付します) 。
 
@@ -71,11 +71,13 @@ Julia 1.13 で上記を実行すると、おおむね次のような流れにな
 | **ブランチ** (`main` など) | **先端が進む** | ブランチの新しいコミットへ **追従** しうる |
 | **コミット SHA** | **完全固定** | そのコミットに **ピン** したのと同様 (公式: [Adding registered packages — commit id](https://pkgdocs.julialang.org/v1/managing-packages/#Adding-registered-packages) の Note) |
 
-検証例: `Pkg.add(url = "https://github.com/fredrikekre/ImportMacros.jl", rev = "v1.0.0")` のあと、`status` では
+`Pkg.add(url = "https://github.com/daihiko-lab/SomePackage.jl", rev = "v1.0.0")` のあと、`status` ではおおむね次のように URL と ref が表示されます。
 
-`ImportMacros v1.0.0 `https://github.com/fredrikekre/ImportMacros.jl#v1.0.0``
+```
+SomePackage v0.1.0 `https://github.com/daihiko-lab/SomePackage.jl#v1.0.0`
+```
 
-のように表示され、`Manifest.toml` には `repo-rev = "v1.0.0"` が記録されます ( §6 参照) 。
+`Manifest.toml` には `repo-rev = "v1.0.0"` が記録されます ( §6 参照) 。
 
 ---
 
@@ -91,7 +93,7 @@ Julia 1.13 で上記を実行すると、おおむね次のような流れにな
 現在チェックアウトされている版 (または追跡中の ref) を **更新対象から外します** 。`status` ではパッケージ名の横に **⚲** が付きます。
 
 ```
-] pin ImportMacros
+] pin SomePackage
 ```
 
 API: [`Pkg.pin`](https://pkgdocs.julialang.org/v1/api/#Pkg.pin) — 追跡中の path / リポジトリはそのままですが、**自動更新されません** 。
@@ -99,10 +101,10 @@ API: [`Pkg.pin`](https://pkgdocs.julialang.org/v1/api/#Pkg.pin) — 追跡中の
 ### `free` (ピン解除・開発パスや Git 追跡の解除)
 
 - **`pin` した状態を戻す** (`⚲` を外す) 。
-- 登録パッケージで **ブランチや dev パス追跡** をやめ、レジストリ版に戻すときにも使います ( [Pinning a package](https://pkgdocs.julialang.org/v1/managing-packages/#Pinning-a-package) 、 [free Example](https://pkgdocs.julialang.org/v1/managing-packages/#Adding-registered-packages) の例) 。
+- 登録パッケージで **ブランチや dev パス追跡** をやめ、レジストリ版に戻すときにも使います ( [Pinning a package](https://pkgdocs.julialang.org/v1/managing-packages/#Pinning-a-package) 、同節の `free` の例) 。
 
 ```
-] free ImportMacros
+] free SomePackage
 ```
 
 **まとめ**: `rev = "abc123…"` は「最初からそのコミットを指定」、`pin` は「いま入っている状態を更新ループに載せない」ための操作です。長期に再現性を固定したいなら、**タグまたはコミット SHA で `add` し、必要なら Manifest をコミット** ( [03_packages.md](03_packages.md) §5) の組み合わせがよく使われます。
@@ -111,11 +113,11 @@ API: [`Pkg.pin`](https://pkgdocs.julialang.org/v1/api/#Pkg.pin) — 追跡中の
 
 ## 4. `Project.toml` の `[sources]` (Julia 1.11+)
 
-Julia **1.11 以降**、URL や `rev` は **`[sources]`** にも書けます。`] add https://…` や `Pkg.add(url=…)` をすると、多くの場合 **自動で `[sources]` が追記** されます (Julia 1.13.3 で `ImportMacros` を追加した際も同様) 。
+Julia **1.11 以降**、URL や `rev` は **`[sources]`** にも書けます。`] add https://…` や `Pkg.add(url=…)` をすると、多くの場合 **自動で `[sources]` が追記** されます。
 
 ```toml
 [sources]
-ImportMacros = { url = "https://github.com/fredrikekre/ImportMacros.jl", rev = "master" }
+SomePackage = { url = "https://github.com/daihiko-lab/SomePackage.jl", rev = "main" }
 ```
 
 手で書く・直すこともできます。キーの意味は [Project.toml and Manifest.toml — `[sources]`](https://pkgdocs.julialang.org/v1/toml-files/#The-sources-section) を参照してください。
@@ -140,7 +142,7 @@ URL が **認証の要る private リポジトリ** のとき、Pkg は内部で
 ### HTTPS
 
 ```
-] add https://github.com/your-org/YourPrivatePkg.jl
+] add https://github.com/daihiko-lab/YourPrivatePkg.jl
 ```
 
 - **Mac / Windows**: Git Credential Manager や `gh auth login` 後の GitHub クレデンシャルで、ブラウザまたはトークン認証が使われることが多いです。
@@ -151,7 +153,7 @@ URL が **認証の要る private リポジトリ** のとき、Pkg は内部で
 URL に `@` が含まれるため **REPL では引用符が必要** です ( [Pkg.jl 公式例](https://pkgdocs.julialang.org/v1/managing-packages/#Adding-unregistered-packages) ) 。
 
 ```
-] add "git@github.com:your-org/YourPrivatePkg.jl.git"
+] add "git@github.com:daihiko-lab/YourPrivatePkg.jl.git"
 ```
 
 - **事前に** `ssh -T git@github.com` が通ること (鍵を `ssh-agent` に載せる、Windows では OpenSSH サービスや 1Password 連携など) 。
@@ -172,7 +174,7 @@ CI (GitHub Actions) で private 依存を取る場合は **Deploy key** や **PA
 
 ## 6. `Manifest.toml` に何が書かれるか
 
-Git 由来の依存は、レジストリ版とはフィールドが異なります ( [Package entries — Added package by branch](https://pkgdocs.julialang.org/v1/toml-files/#Added-package-by-branch) ) 。
+Git 由来の依存は、レジストリ版とはフィールドが異なります ( [Package entries — Added package by branch](https://pkgdocs.julialang.org/v1/toml-files/#Added-package-by-branch) 、構造は Pkg 公式の例に準拠) 。
 
 | フィールド | 意味 |
 |------------|------|
@@ -180,15 +182,15 @@ Git 由来の依存は、レジストリ版とはフィールドが異なりま�
 | `repo-rev` | 追跡している ref (ブランチ名・タグ名・コミット SHA) |
 | `git-tree-sha1` | その時点の **ソースツリーの内容ハッシュ** (実体の同一性) |
 
-`rev = "master"` で追加した例 (Julia 1.13.3) :
+ブランチ `main` を追跡している場合の **イメージ** (数値は環境ごとに異なります) :
 
 ```toml
-[[deps.ImportMacros]]
-git-tree-sha1 = "0efe47004385c96d675583149ff9e70a06c12fe5"
-repo-rev = "master"
-repo-url = "https://github.com/fredrikekre/ImportMacros.jl"
-uuid = "92a963f6-6b1d-11e9-1d6c-8d25856e017b"
-version = "1.0.0"
+[[deps.SomePackage]]
+git-tree-sha1 = "0000000000000000000000000000000000000000"
+repo-rev = "main"
+repo-url = "https://github.com/daihiko-lab/SomePackage.jl"
+uuid = "00000000-0000-0000-0000-000000000001"
+version = "0.1.0"
 ```
 
 タグ `v1.0.0` 指定時は `repo-rev = "v1.0.0"` になり、`repo-url` は同様です。

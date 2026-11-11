@@ -1,0 +1,109 @@
+# ゼミ用 CI。参考: https://github.com/yamanori99/DistSSHRun.jl
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+  # 月1回 (毎月1日 10:00 JST = UTC 01:00)。DistSSHRun.jl の runic.yml と同じ時刻帯の考え方。
+  schedule:
+    - cron: "0 1 1 * *"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
+
+permissions:
+  contents: read
+
+jobs:
+  runic:
+    name: Runic
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: julia-actions/setup-julia@v2
+        with:
+          version: "1"
+      - uses: fredrikekre/runic-action@v1
+        with:
+          version: "1"
+
+  jetls:
+    name: JETLS (1.13, ubuntu-latest, x64)
+    needs: runic
+    if: needs.runic.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      JULIA_CPU_TARGET: "generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1);x86-64-v4,-rdrnd,base(1)"
+    steps:
+      - uses: actions/checkout@v4
+      - id: files
+        run: echo "list=$(./.github/jetls-check.sh --print-files)" >> "$GITHUB_OUTPUT"
+      - uses: julia-actions/setup-julia@v2
+        with:
+          version: "1.13"
+      - name: Log runner CPU
+        id: runner
+        run: |
+          set -euo pipefail
+          julia --startup-file=no -e 'println("CPU_NAME=", Sys.CPU_NAME); println("CPU_MODEL=", Sys.cpu_info()[1].model)'
+          ver="$(julia --startup-file=no -e 'print(VERSION)')"
+          tag="$(printf '%s' "$JULIA_CPU_TARGET" | sha256sum | cut -c1-12)"
+          echo "julia=${ver}" >> "$GITHUB_OUTPUT"
+          echo "cputarget=${tag}" >> "$GITHUB_OUTPUT"
+      - uses: julia-actions/cache@v2
+        with:
+          cache-name: julia-cache;workflow=${{ github.workflow }};job=${{ github.job }};cputarget=${{ steps.runner.outputs.cputarget }};julia=${{ steps.runner.outputs.julia }}
+          cache-scratchspaces: false
+          delete-old-caches: false
+      - uses: ./.github/actions/jetls-check
+        with:
+          files: ${{ steps.files.outputs.list }}
+
+  test:
+    # matrix 値は GitHub が自動でサフィックス付与するためベース名のみ
+    name: JuliaGitHubCursorIntro
+    needs: [runic, jetls]
+    if: needs.runic.result == 'success' && needs.jetls.result == 'success'
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    permissions:
+      contents: read
+      id-token: write # Codecov OIDC (`main` への push 時)
+    strategy:
+      fail-fast: false
+      matrix:
+        version:
+          - "1"
+        os:
+          - ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: julia-actions/setup-julia@v2
+        with:
+          version: ${{ matrix.version }}
+      - uses: julia-actions/cache@v2
+        with:
+          cache-scratchspaces: false
+          delete-old-caches: false
+      - uses: julia-actions/julia-buildpkg@v1
+      - uses: julia-actions/julia-runtest@v1
+        with:
+          coverage: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+      - uses: julia-actions/julia-processcoverage@v1
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        with:
+          directories: src
+      - name: Upload coverage to Codecov
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: codecov/codecov-action@v4
+        with:
+          files: lcov.info
+          slug: ${{ github.repository }}
+          use_oidc: true
+          fail_ci_if_error: false

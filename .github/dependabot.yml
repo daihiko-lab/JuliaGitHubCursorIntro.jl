@@ -1,0 +1,29 @@
+# DistSSHRun.jl の dependabot を単一 Project.toml 向けに簡略化
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+
+  # CompatHelper ワークフローの代わりに Julia 依存の更新 PR (DistSSHRun.jl と同方針) 
+  - package-ecosystem: julia
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 3
+    labels:
+      - dependencies
+    ignore:
+      - dependency-name: Dates
+      - dependency-name: Pkg
+      - dependency-name: Statistics
+      - dependency-name: Test
+      - dependency-name: TOML

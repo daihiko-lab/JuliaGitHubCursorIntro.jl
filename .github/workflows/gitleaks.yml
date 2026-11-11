@@ -1,0 +1,38 @@
+# 教材用。DistSSHRun.jl の gitleaks.yml を参考に簡略化。
+# gitleaks-action は Organization で GITLEAKS_LICENSE を要求するため、OSS の gitleaks CLI を直接実行。
+name: Scan
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
+
+permissions:
+  contents: read
+
+jobs:
+  gitleaks:
+    name: Gitleaks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install gitleaks (OSS CLI)
+        shell: bash
+        run: |
+          set -euo pipefail
+          ver=8.22.1
+          curl -fsSL "https://github.com/gitleaks/gitleaks/releases/download/v${ver}/gitleaks_${ver}_linux_x64.tar.gz" | tar -xz gitleaks
+          sudo install -m 0755 gitleaks /usr/local/bin/gitleaks
+          gitleaks version
+      - name: Scan for secrets
+        shell: bash
+        run: gitleaks detect --source . --verbose --redact

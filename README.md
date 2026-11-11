@@ -4,13 +4,10 @@
 
 <p>
 <a href="https://github.com/daihiko-lab/JuliaGitHubCursorIntro.jl/actions/workflows/CI.yml"><img src="https://img.shields.io/github/actions/workflow/status/daihiko-lab/JuliaGitHubCursorIntro.jl/CI.yml?branch=main&amp;style=flat-square&amp;logo=githubactions&amp;logoColor=white&amp;label=Test" alt="Test"></a>
-<a href="https://github.com/daihiko-lab/JuliaGitHubCursorIntro.jl/actions/workflows/CI.yml"><img src="https://img.shields.io/github/actions/workflow/status/daihiko-lab/JuliaGitHubCursorIntro.jl/CI.yml?branch=main&amp;job=jetls&amp;style=flat-square&amp;logo=githubactions&amp;logoColor=white&amp;label=JETLS" alt="JETLS"></a>
-<a href="https://github.com/daihiko-lab/JuliaGitHubCursorIntro.jl/actions/workflows/actions-lint.yml"><img src="https://img.shields.io/github/actions/workflow/status/daihiko-lab/JuliaGitHubCursorIntro.jl/actions-lint.yml?branch=main&amp;style=flat-square&amp;logo=githubactions&amp;logoColor=white&amp;label=actionlint" alt="actionlint"></a>
-<a href="https://github.com/daihiko-lab/JuliaGitHubCursorIntro.jl/actions/workflows/gitleaks.yml"><img src="https://img.shields.io/github/actions/workflow/status/daihiko-lab/JuliaGitHubCursorIntro.jl/gitleaks.yml?branch=main&amp;style=flat-square&amp;logo=githubactions&amp;logoColor=white&amp;label=Gitleaks" alt="Gitleaks"></a>
-<a href="https://codecov.io/gh/daihiko-lab/JuliaGitHubCursorIntro.jl"><img src="https://img.shields.io/codecov/c/github/daihiko-lab/JuliaGitHubCursorIntro.jl?style=flat-square&amp;logo=codecov&amp;logoColor=white" alt="Codecov"></a>
+<a href="https://codecov.io/gh/daihiko-lab/JuliaGitHubCursorIntro.jl"><img src="https://img.shields.io/codecov/c/github/daihiko-lab/JuliaGitHubCursorIntro.jl?style=flat-square&amp;logo=codecov&amp;logoColor=white" alt="cov"></a>
 <a href="https://docs.julialang.org/en/v1/"><img src="https://img.shields.io/badge/Julia-1.13+-9558B2?style=flat-square&amp;logo=julia&amp;logoColor=white" alt="Julia 1.13+"></a>
-<a href="https://github.com/fredrikekre/Runic.jl"><img src="https://img.shields.io/badge/code_style-%E1%9A%B1%E1%9A%A2%E1%9A%BE%E1%9B%81%E1%9A%B2-black" alt="code style: runic"></a>
 <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License: MIT"></a>
+<a href="https://github.com/fredrikekre/Runic.jl"><img src="https://img.shields.io/badge/code_style-%E1%9A%B1%E1%9A%A2%E1%9A%BE%E1%9B%81%E1%9A%B2-black" alt="code style: runic"></a>
 </p>
 
 ゼミ (社会心理学研究室) 向けの **Julia / Git / GitHub / Cursor** 導入会 (約2時間) 用教材です。架空データを使った Julia の入門演習と、全員で **ブランチ → コミット → push → プルリクエスト (PR)** まで体験する課題を含みます。

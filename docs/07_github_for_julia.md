@@ -82,7 +82,21 @@ TagBot が行うことは、手動のタグ・リリース ([06_tags_releases.md
 
 ---
 
-## 6. Codecov
+## 6. Aqua.jl (パッケージ品質の自動チェック) 
+
+[**Aqua.jl**](https://github.com/JuliaTesting/Aqua.jl) は、Julia パッケージの「お作法」を **テストから自動検査** するためのパッケージです。
+
+- 例: 未使用・未宣言の依存、`Project.toml` の整合、`typealias` やメソッドの曖昧性の有無 など
+- 典型的には `test/runtests.jl` で `Aqua.test_all(YourPackage)` を呼ぶ (**テスト専用依存** として `[extras]` / `[targets] test` に `Aqua` を追加) 
+- [DistSSHRun.jl](https://github.com/yamanori99/DistSSHRun.jl) は CI でも別ジョブとして Aqua を回す例がある
+
+**本教材** では `JuliaGitHubCursorIntro` の `Pkg.test()` 内で Aqua を実行します (General 未登録の教材用パッケージです) 。
+
+類似ツールに [**JET.jl**](https://github.com/aviatesk/JET.jl) があり、テスト内で型推論エラーや例外パスを検査できます。**今回は CI で JETLS (`jetls check`) を回しており、テストへの JET 組み込みは省略** しています (重複を避けるため) 。
+
+---
+
+## 7. Codecov
 
 [**Codecov**](https://about.codecov.io/) は **テストカバレッジ** (どの行がテストで実行されたか) を集計・可視化するサービスです。
 
@@ -93,7 +107,7 @@ TagBot が行うことは、手動のタグ・リリース ([06_tags_releases.md
 
 ---
 
-## 7. まとめ
+## 8. まとめ
 
 | 機能 | ざっくり用途 |
 |------|----------------|

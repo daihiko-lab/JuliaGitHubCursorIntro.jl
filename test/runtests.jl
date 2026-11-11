@@ -1,5 +1,10 @@
+using Aqua
 using JuliaGitHubCursorIntro
 using Test
+
+@testset "Aqua" begin
+    Aqua.test_all(JuliaGitHubCursorIntro)
+end
 
 @testset "JuliaGitHubCursorIntro" begin
     @test occursin("Julia", JuliaGitHubCursorIntro.greet())

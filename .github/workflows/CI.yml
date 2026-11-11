@@ -68,6 +68,9 @@ jobs:
     if: needs.runic.result == 'success' && needs.jetls.result == 'success'
     runs-on: ${{ matrix.os }}
     timeout-minutes: 45
+    permissions:
+      contents: read
+      id-token: write # Codecov OIDC (`main` への push 時)
     strategy:
       fail-fast: false
       matrix:
@@ -86,3 +89,17 @@ jobs:
           delete-old-caches: false
       - uses: julia-actions/julia-buildpkg@v1
       - uses: julia-actions/julia-runtest@v1
+        with:
+          coverage: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+      - uses: julia-actions/julia-processcoverage@v1
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        with:
+          directories: src
+      - name: Upload coverage to Codecov
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: codecov/codecov-action@v4
+        with:
+          files: lcov.info
+          slug: ${{ github.repository }}
+          use_oidc: true
+          fail_ci_if_error: false

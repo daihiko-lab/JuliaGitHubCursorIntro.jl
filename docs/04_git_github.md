@@ -20,6 +20,13 @@
 
 今回の PR 課題の詳細は [submissions/README.md](../submissions/README.md) です。
 
+### Public 教材と Private ハンズオン
+
+- **公開教材**: [daihiko-lab/julia-github-cusor-intro](https://github.com/daihiko-lab/julia-github-cusor-intro) (Public。旧 URL からリダイレクトされます) 
+- **当日の演習**: オーナーが複製した **Private リポジトリ** で PR を出します。clone する URL は **オーナーの案内** に従ってください (テンプレート複製か Organization 内コピーか等はオーナーが選択します) 
+
+以下の手順では、`<ハンズオン用リポジトリの URL>` をオーナーから受け取った clone URL に置き換えてください。
+
 ---
 
 ## 1. リポジトリを clone する
@@ -28,7 +35,7 @@
 
 1. **Command Palette** (`Ctrl+Shift+P` / Mac は `Cmd+Shift+P`) 
 2. 「Git: Clone」を選ぶ
-3. `https://github.com/daihiko-lab/julia-github-intro-2026.git` を入力 (SSH を使う人は SSH URL) 
+3. `<ハンズオン用リポジトリの URL>` を入力 (SSH を使う人は SSH URL) 
 4. 保存先フォルダを選ぶ
 5. 「開く」でワークスペースとして開く
 
@@ -36,11 +43,13 @@
 
 ```bash
 cd 作業したい親フォルダ
-git clone https://github.com/daihiko-lab/julia-github-intro-2026.git
-cd julia-github-intro-2026
+git clone <ハンズオン用リポジトリの URL>
+cd <clone したフォルダ名>
 ```
 
 初回だけ GitHub へのログインを求められることがあります (ブラウザ認証など) 。
+
+(予習) 公開版のみ読みたい場合: `git clone https://github.com/daihiko-lab/julia-github-cusor-intro.git`
 
 ---
 

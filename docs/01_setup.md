@@ -15,7 +15,7 @@
    - 招待されるのは **Organization 全体ではなく、当日用のハンズオンリポジトリ** です (URL はオーナーが案内)   
    - メールのリンクから承認すると、そのリポジトリを clone して push できるようになります
 
-教材の **公開版** は [daihiko-lab/julia-github-cursor-intro](https://github.com/daihiko-lab/julia-github-cursor-intro) (Public) です。予習用に読んでも構いませんが、**PR 課題はハンズオン用リポジトリ** に対して出します。
+教材の **公開版** は [daihiko-lab/JuliaGitHubCursorIntro.jl](https://github.com/daihiko-lab/JuliaGitHubCursorIntro.jl) (Public) です。予習用に読んでも構いませんが、**PR 課題はハンズオン用リポジトリ** に対して出します。
 
 > **補足**: 今回は fork は使いません。コラボレーターとして直接ブランチを切ります ([docs/04_git_github.md](04_git_github.md) のコラム参照) 。
 

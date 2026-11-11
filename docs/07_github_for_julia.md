@@ -4,6 +4,8 @@
 
 ゼミの当日ハンズオンでは扱いません。将来パッケージ開発に進むときの「地図」として読んでください。
 
+**本教材リポジトリ** は `Project.toml` + `src/JuliaGitHubCursorIntro.jl` + `test/` という **本番パッケージに近い形** ですが、**General への登録は行いません** (Registrator / TagBot の対象にはしません) 。構造のお手本として読んでください。
+
 関連: [タグとリリース (06) ](06_tags_releases.md) / [ライセンスの基礎 (08_licensing.md) ](08_licensing.md)
 
 ---

@@ -25,7 +25,7 @@ REPL で **`]`** (右角括弧) を押すと、プロンプトが `pkg>` にな�
 | `activate .` | **このフォルダ** をプロジェクト環境にする |
 | `instantiate` | `Project.toml` に書かれた依存をインストール |
 
-この教材リポジトリでは、すでに `Project.toml` に **CSV, DataFrames, Plots, Statistics** (Statistics は標準ライブラリですが、Julia の新しいバージョンでは明示的に依存へ書くことがあります) が書かれています。初回は:
+この教材リポジトリは **Julia パッケージ風** (`src/JuliaGitHubCursorIntro.jl`、名前 **`JuliaGitHubCursorIntro`**) ですが、**General には登録しません** (ゼミ用に clone + `activate` するだけ) 。`Project.toml` には **CSV, DataFrames, Plots, Statistics** (Statistics は標準ライブラリですが、Julia の新しいバージョンでは明示的に依存へ書くことがあります) が書かれています。初回は:
 
 ```
 ] activate .

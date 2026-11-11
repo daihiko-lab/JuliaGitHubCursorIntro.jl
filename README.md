@@ -1,11 +1,11 @@
-# julia-github-cursor-intro
+# JuliaGitHubCursorIntro.jl
 
-<!-- リポジトリ名変更時: 文字列 julia-github-cursor-intro / daihiko-lab/julia-github-cursor-intro を検索 (詳細は docs/05_ci.md §8) -->
+<!-- リポジトリ名変更時: 文字列 JuliaGitHubCursorIntro.jl / daihiko-lab/JuliaGitHubCursorIntro.jl を検索 (詳細は docs/05_ci.md §8) -->
 
 <p>
-<a href="https://github.com/daihiko-lab/julia-github-cursor-intro/actions/workflows/CI.yml"><img src="https://img.shields.io/github/actions/workflow/status/daihiko-lab/julia-github-cursor-intro/CI.yml?branch=main&amp;style=flat-square&amp;logo=githubactions&amp;logoColor=white&amp;label=Test" alt="Test"></a>
-<a href="https://github.com/daihiko-lab/julia-github-cursor-intro/actions/workflows/CI.yml"><img src="https://img.shields.io/github/actions/workflow/status/daihiko-lab/julia-github-cursor-intro/CI.yml?branch=main&amp;job=jetls&amp;style=flat-square&amp;logo=githubactions&amp;logoColor=white&amp;label=JETLS" alt="JETLS"></a>
-<a href="https://codecov.io/gh/daihiko-lab/julia-github-cursor-intro"><img src="https://img.shields.io/codecov/c/github/daihiko-lab/julia-github-cursor-intro?style=flat-square&amp;logo=codecov&amp;logoColor=white" alt="Codecov"></a>
+<a href="https://github.com/daihiko-lab/JuliaGitHubCursorIntro.jl/actions/workflows/CI.yml"><img src="https://img.shields.io/github/actions/workflow/status/daihiko-lab/JuliaGitHubCursorIntro.jl/CI.yml?branch=main&amp;style=flat-square&amp;logo=githubactions&amp;logoColor=white&amp;label=Test" alt="Test"></a>
+<a href="https://github.com/daihiko-lab/JuliaGitHubCursorIntro.jl/actions/workflows/CI.yml"><img src="https://img.shields.io/github/actions/workflow/status/daihiko-lab/JuliaGitHubCursorIntro.jl/CI.yml?branch=main&amp;job=jetls&amp;style=flat-square&amp;logo=githubactions&amp;logoColor=white&amp;label=JETLS" alt="JETLS"></a>
+<a href="https://codecov.io/gh/daihiko-lab/JuliaGitHubCursorIntro.jl"><img src="https://img.shields.io/codecov/c/github/daihiko-lab/JuliaGitHubCursorIntro.jl?style=flat-square&amp;logo=codecov&amp;logoColor=white" alt="Codecov"></a>
 <a href="https://docs.julialang.org/en/v1/"><img src="https://img.shields.io/badge/Julia-1.13+-9558B2?style=flat-square&amp;logo=julia&amp;logoColor=white" alt="Julia 1.13+"></a>
 <a href="https://github.com/fredrikekre/Runic.jl"><img src="https://img.shields.io/badge/code_style-%E1%9A%B1%E1%9A%A2%E1%9A%BE%E1%9B%81%E1%9A%B2-black" alt="code style: runic"></a>
 <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License: MIT"></a>
@@ -17,7 +17,7 @@
 
 | 種類 | 説明 |
 |------|------|
-| **このリポジトリ (Public)** | 教材の **公開版** です。[`daihiko-lab/julia-github-cursor-intro`](https://github.com/daihiko-lab/julia-github-cursor-intro) で誰でも閲覧・clone できます (旧名 `julia-github-intro-2026` や誤記 `julia-github-cusor-intro` からは GitHub がリダイレクトします) 。 |
+| **このリポジトリ (Public)** | 教材の **公開版** です。[`daihiko-lab/JuliaGitHubCursorIntro.jl`](https://github.com/daihiko-lab/JuliaGitHubCursorIntro.jl) で誰でも閲覧・clone できます (旧 slug `julia-github-intro-2026` / `julia-github-cusor-intro` / `julia-github-cursor-intro` などからは GitHub がリダイレクトします) 。 |
 | **当日のハンズオン用 (Private)** | ゼミ当日の PR 演習は、オーナーが用意する **別の Private リポジトリ** で行います (おおむねこの内容の複製) 。参加者はそちらに **コラボレーター招待** され、clone・push・PR は **ハンズオン用の URL** に対して行います。 |
 
 複製の具体的な手順 (テンプレート化、Organization 内の複製、Import など) は **オーナーが決め、当日までに URL を案内** します。予習は Public 版を clone してもかまいませんが、**課題の PR は案内されたハンズオン用リポジトリへ** 出してください ([docs/04_git_github.md](docs/04_git_github.md)) 。
@@ -67,14 +67,27 @@
    julia examples/analyze_survey.jl
    ```
 
-(任意) 事前予習として、公開版 `https://github.com/daihiko-lab/julia-github-cursor-intro` を clone して読んでも構いません。
+(任意) 事前予習として、公開版 `https://github.com/daihiko-lab/JuliaGitHubCursorIntro.jl` を clone して読んでも構いません。
+
+## Julia パッケージとしての構成
+
+教材本体は **Julia パッケージ風** に整理しています (モジュール名 **`JuliaGitHubCursorIntro`** ) 。
+
+| 場所 | 内容 |
+|------|------|
+| [`Project.toml`](Project.toml) | パッケージ名・UUID・`[compat]` ( **`JuliaGitHubCursorIntro`** ) |
+| [`src/JuliaGitHubCursorIntro.jl`](src/JuliaGitHubCursorIntro.jl) | モジュール本体 (CSV 集計の API など) |
+| [`test/runtests.jl`](test/runtests.jl) | `using JuliaGitHubCursorIntro` を前提にしたテスト |
+| [`examples/analyze_survey.jl`](examples/analyze_survey.jl) | 上記モジュールを呼ぶ薄いスクリプト |
+
+**[General](https://github.com/JuliaRegistries/General) レジストリには登録しません。** `] add JuliaGitHubCursorIntro` ではなく、clone 後に `] activate .` して使います (登録パッケージとの違いは [docs/03_packages.md](docs/03_packages.md)) 。
 
 ## リポジトリの主な場所
 
-- `examples/` … 当日触るサンプルコード
+- `examples/` … 当日触るサンプルコード (`JuliaGitHubCursorIntro` を利用) 
 - `data/` … ハンズオン用 CSV (架空データ) 
 - `submissions/` … PR 課題で各自がファイルを追加する場所
-- `test/` … 簡単な自動テスト (CI でも実行) 
+- `test/` … `Pkg.test()` 用 (CI でも実行) 
 
 ## ライセンス
 

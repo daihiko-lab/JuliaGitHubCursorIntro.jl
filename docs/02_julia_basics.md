@@ -154,16 +154,25 @@ savefig(p, joinpath("output", "mean_score_by_condition.png"))
 
 ## 7. スクリプトとして一括実行
 
-同じ処理は `examples/analyze_survey.jl` にまとめてあります。
+同じ処理はパッケージ **`JuliaGitHubCursorIntro`** にまとめてあり、`examples/analyze_survey.jl` から呼び出します (**General には登録しない** 教材用パッケージです) 。
 
 ```bash
 julia examples/analyze_survey.jl
 ```
 
+REPL から直接試す場合:
+
+```julia
+] activate .
+] instantiate
+using JuliaGitHubCursorIntro
+JuliaGitHubCursorIntro.run_survey_analysis!()
+```
+
 エラーが出たときは:
 
 - `] activate .` と `] instantiate` をしたか
-- カレントディレクトリがリポジトリのルートか
+- カレントディレクトリがリポジトリのルートか (`examples/` からスクリプトを叩く場合も、スクリプト側でプロジェクトを有効化しています) 
 
 を確認してください。
 

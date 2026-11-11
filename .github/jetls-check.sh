@@ -7,7 +7,7 @@ cd "$root"
 shopt -s nullglob
 
 files=(
-    src/JuliaGithubIntro2026.jl
+    src/JuliaGitHubCursorIntro.jl
     test/runtests.jl
     examples/analyze_survey.jl
     submissions/example_githubuser.jl

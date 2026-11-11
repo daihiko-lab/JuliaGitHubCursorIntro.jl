@@ -1,5 +1,7 @@
 # julia-github-cusor-intro
 
+<!-- リポジトリ名変更時: 文字列 julia-github-cusor-intro / daihiko-lab/julia-github-cusor-intro を検索 (詳細は docs/05_ci.md §8) -->
+
 <p>
 <a href="https://github.com/daihiko-lab/julia-github-cusor-intro/actions/workflows/CI.yml"><img src="https://img.shields.io/github/actions/workflow/status/daihiko-lab/julia-github-cusor-intro/CI.yml?branch=main&amp;style=flat-square&amp;logo=githubactions&amp;logoColor=white&amp;label=Test" alt="Test"></a>
 <a href="https://github.com/daihiko-lab/julia-github-cusor-intro/actions/workflows/CI.yml"><img src="https://img.shields.io/github/actions/workflow/status/daihiko-lab/julia-github-cusor-intro/CI.yml?branch=main&amp;job=jetls&amp;style=flat-square&amp;logo=githubactions&amp;logoColor=white&amp;label=JETLS" alt="JETLS"></a>

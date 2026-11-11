@@ -2,6 +2,7 @@
 
 <p>
 <a href="https://github.com/daihiko-lab/julia-github-cusor-intro/actions/workflows/CI.yml"><img src="https://img.shields.io/github/actions/workflow/status/daihiko-lab/julia-github-cusor-intro/CI.yml?branch=main&amp;style=flat-square&amp;logo=githubactions&amp;logoColor=white&amp;label=Test" alt="Test"></a>
+<a href="https://github.com/daihiko-lab/julia-github-cusor-intro/actions/workflows/CI.yml"><img src="https://img.shields.io/github/actions/workflow/status/daihiko-lab/julia-github-cusor-intro/CI.yml?branch=main&amp;job=jetls&amp;style=flat-square&amp;logo=githubactions&amp;logoColor=white&amp;label=JETLS" alt="JETLS"></a>
 <a href="https://codecov.io/gh/daihiko-lab/julia-github-cusor-intro"><img src="https://img.shields.io/codecov/c/github/daihiko-lab/julia-github-cusor-intro?style=flat-square&amp;logo=codecov&amp;logoColor=white" alt="Codecov"></a>
 <a href="https://docs.julialang.org/en/v1/"><img src="https://img.shields.io/badge/Julia-1.13+-9558B2?style=flat-square&amp;logo=julia&amp;logoColor=white" alt="Julia 1.13+"></a>
 <a href="https://github.com/fredrikekre/Runic.jl"><img src="https://img.shields.io/badge/code_style-%E1%9A%B1%E1%9A%A2%E1%9A%BE%E1%9B%81%E1%9A%B2-black" alt="code style: runic"></a>

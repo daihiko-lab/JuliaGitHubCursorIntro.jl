@@ -11,7 +11,7 @@ using DataFrames
 using Plots
 using Statistics
 
-export greet, pkg_root, survey_data_path, output_dir, run_survey_analysis!
+export greet, output_dir, pkg_root, run_survey_analysis!, survey_data_path
 
 """教材用の短い挨拶文字列を返す。"""
 greet() = "Julia / GitHub / Cursor 入門 (2026) "

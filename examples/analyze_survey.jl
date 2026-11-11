@@ -1,5 +1,5 @@
 #!/usr/bin/env julia
-# 架空アンケートデータの読み込み・集計・可視化の例 (docs/02_julia_basics.md と対応) 
+# 架空アンケートデータの読み込み・集計・可視化の例 (docs/02_julia_basics.md と対応)
 
 using CSV
 using DataFrames

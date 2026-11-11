@@ -6,9 +6,9 @@ root="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$root"
 shopt -s nullglob
 
+# test/runtests.jl は Test / Aqua 依存のため JETLS 対象外 (Pkg.test で検証)
 files=(
     src/JuliaGitHubCursorIntro.jl
-    test/runtests.jl
     examples/analyze_survey.jl
     submissions/example_githubuser.jl
 )

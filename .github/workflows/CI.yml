@@ -66,7 +66,8 @@ jobs:
           files: ${{ steps.files.outputs.list }}
 
   test:
-    name: JuliaGitHubCursorIntro (${{ matrix.version }}, ${{ matrix.os }})
+    # 単一 matrix なので ruleset 用にジョブ名を固定 (GitHub チェック名と一致させる)
+    name: JuliaGitHubCursorIntro (1, ubuntu-latest)
     needs: [runic, jetls]
     if: needs.runic.result == 'success' && needs.jetls.result == 'success'
     runs-on: ${{ matrix.os }}

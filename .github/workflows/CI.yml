@@ -7,6 +7,9 @@ on:
       - main
   pull_request:
   workflow_dispatch:
+  # 月1回 (毎月1日 10:00 JST = UTC 01:00)。DistSSHRun.jl の runic.yml と同じ時刻帯の考え方。
+  schedule:
+    - cron: "0 1 1 * *"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}

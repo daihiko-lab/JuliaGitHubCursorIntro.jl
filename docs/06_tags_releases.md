@@ -126,7 +126,9 @@ Julia の `Project.toml` にある `version = "0.1.0"` も、プロジェクト�
 
 ### Zenodo と DOI（軽い紹介）
 
-[Zenodo](https://zenodo.org/) は、研究データやソフトウェアを **長期アーカイブ** し、**DOI（Digital Object Identifier）** を付与できるサービスです。GitHub リポジトリやリリースと連携し、**引用しやすい永続リンク** を得る研究者が多いです（GitHub → Zenodo の連携設定は本ゼミの範囲外ですが、「タグ・リリースで区切った版をアーカイブできる」イメージを持っておくとよいです）。
+[Zenodo](https://zenodo.org/) は、研究データやソフトウェアを **長期アーカイブ** し、**DOI（Digital Object Identifier）** を付与できるサービスです。GitHub リポジトリやリリースと連携し、**引用しやすい永続リンク** を得る研究者が多いです（GitHub → Zenodo の連携設定は本ゼミの範囲外ですが、「タグ・リリースで区切った版をアーカイブできる」イメージを持っておくとよいです）。公開時の **ライセンス** の考え方は [08_licensing.md](08_licensing.md) も参照してください。
+
+Julia パッケージを General に登録したあとの **TagBot**（タグ・Release 自動化）は [07_github_for_julia.md](07_github_for_julia.md) を参照してください。
 
 ---
 

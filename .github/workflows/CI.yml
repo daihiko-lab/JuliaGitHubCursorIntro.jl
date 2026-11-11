@@ -1,19 +1,41 @@
-name: CI
+# ゼミ用の簡略 CI。オーナー本番設定の参考: https://github.com/yamanori99/DistSSHRun.jl
+name: Test
 
 on:
   push:
     branches:
       - main
   pull_request:
+  workflow_dispatch:
 
+# DistSSHRun.jl と同様: PR では新しい push で古いランをキャンセル、main は走り切る
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
+
+permissions:
+  contents: read
 
 jobs:
+  runic:
+    name: Runic
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: julia-actions/setup-julia@v2
+        with:
+          version: "1"
+      - uses: fredrikekre/runic-action@v1
+        with:
+          version: "1"
+
   test:
-    name: Julia ${{ matrix.version }} - ${{ matrix.os }}
+    name: JuliaGithubIntro2026 (${{ matrix.version }}, ${{ matrix.os }})
+    needs: runic
+    if: needs.runic.result == 'success'
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
     strategy:
       fail-fast: false
       matrix:
@@ -22,7 +44,6 @@ jobs:
         os:
           - ubuntu-latest
         include:
-          # 参加者の主な OS でも動くか見る（Julia release）
           - os: macos-latest
             version: "1"
           - os: windows-latest
@@ -33,13 +54,5 @@ jobs:
         with:
           version: ${{ matrix.version }}
       - uses: julia-actions/cache@v2
-      - name: Install dependencies
-        shell: bash
-        run: julia --project=. -e 'using Pkg; Pkg.instantiate(); Pkg.precompile()'
-      - uses: julia-actions/julia-runtest@v1
       - uses: julia-actions/julia-buildpkg@v1
-      - name: Check formatting (Ubuntu, release only)
-        if: matrix.os == 'ubuntu-latest' && matrix.version == '1'
-        run: |
-          julia -e 'using Pkg; Pkg.add(Pkg.PackageSpec(name="Runic", version="1"))'
-          julia -m Runic -c .
+      - uses: julia-actions/julia-runtest@v1

@@ -17,7 +17,7 @@
 | 0:25–0:55 | Julia 入門（うち約10分はパッケージ管理） |
 | 0:55–1:05 | 休憩・フォロー |
 | 1:05–1:40 | Git/GitHub ハンズオン（clone → branch → commit → push → PR） |
-| 1:40–1:50 | CI デモ（オーナー設置の CI を **見るだけ**） |
+| 1:40–1:50 | CI デモ（オーナー設置の CI を **見るだけ**。設定の参考: [DistSSHRun.jl](https://github.com/yamanori99/DistSSHRun.jl)） |
 | 1:50–2:00 | タグ・リリースの概要（**デモのみ**）、Cursor の AI 機能紹介、まとめ |
 
 ## ドキュメント
@@ -30,6 +30,8 @@
 | [docs/04_git_github.md](docs/04_git_github.md) | Cursor での Git/GitHub 操作 |
 | [docs/05_ci.md](docs/05_ci.md) | CI の見方（参加者は設定しない） |
 | [docs/06_tags_releases.md](docs/06_tags_releases.md) | タグ・GitHub Releases（説明・デモ用） |
+| [docs/07_github_for_julia.md](docs/07_github_for_julia.md) | Julia 向け GitHub 機能コラム（**発展・読み物**） |
+| [docs/08_licensing.md](docs/08_licensing.md) | ライセンスの基礎（コード・データ・Zenodo） |
 | [submissions/README.md](submissions/README.md) | **PR 課題**の説明 |
 
 ## 参加者が最初にやること
@@ -57,4 +59,4 @@
 
 ## ライセンス
 
-[MIT License](LICENSE)
+このリポジトリに載せる **ライセンス（`LICENSE` ファイルなど）** はオーナーが決定します。一般的な考え方・MIT/CC/Zenodo の話は [docs/08_licensing.md](docs/08_licensing.md) を読んでください（法的助言ではありません）。

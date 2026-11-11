@@ -1,0 +1,69 @@
+# DistSSHRun.jl の .github/actions/jetls-check を教材向けに流用 (rev ピン付き)
+name: jetls-check
+description: Install JETLS app and run jetls check (caller must setup-julia + julia-actions/cache)
+
+inputs:
+  files:
+    description: Space-separated Julia files for jetls check
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: JETLS app cache key
+      id: jetls-key
+      shell: bash
+      run: |
+        set -euo pipefail
+        ver="$(julia --startup-file=no -e 'print(VERSION)')"
+        rev="$(grep -E -m 1 -o 'rev="[0-9]{4}-[0-9]{2}-[0-9]{2}"' "${GITHUB_ACTION_PATH}/action.yml" || true)"
+        rev="${rev#rev=\"}"
+        rev="${rev%\"}"
+        if [[ ! "${rev}" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
+          echo "jetls-check: date pin missing in ${GITHUB_ACTION_PATH}/action.yml" >&2
+          exit 1
+        fi
+        echo "julia=${ver}" >> "${GITHUB_OUTPUT}"
+        echo "rev=${rev}" >> "${GITHUB_OUTPUT}"
+    - name: Restore JETLS app
+      id: jetls-app
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.julia/environments/apps/JETLS
+          ~/.julia/environments/apps/AppManifest.toml
+          ~/.julia/bin/jetls
+        key: jetls-app-${{ runner.os }}-${{ steps.jetls-key.outputs.julia }}-${{ steps.jetls-key.outputs.rev }}
+    - name: Install jetls
+      shell: bash
+      env:
+        JETLS_APP_CACHE: ${{ steps.jetls-app.outputs.cache-hit }}
+      run: |
+        set -euo pipefail
+        mkdir -p "$HOME/.julia/bin"
+        echo "$HOME/.julia/bin" >> "$GITHUB_PATH"
+        export PATH="$HOME/.julia/bin:$PATH"
+        if [[ -z "${JULIA_APPS_JULIA_CMD:-}" ]]; then
+          export JULIA_APPS_JULIA_CMD="$(command -v julia)"
+        fi
+        if [[ "${JETLS_APP_CACHE}" == "true" && -x "${HOME}/.julia/bin/jetls" && -f "${HOME}/.julia/environments/apps/JETLS/Manifest.toml" ]]; then
+          if jetls version; then
+            exit 0
+          fi
+        fi
+        julia --startup-file=no -e '
+          using Pkg
+          Pkg.Apps.add(; url="https://github.com/aviatesk/JETLS.jl", rev="2026-11-04")
+        '
+    - name: Run jetls check
+      shell: bash
+      env:
+        JETLS_FILES: ${{ inputs.files }}
+      run: |
+        set -euo pipefail
+        export PATH="$HOME/.julia/bin:$PATH"
+        if [[ -z "${JULIA_APPS_JULIA_CMD:-}" ]]; then
+          export JULIA_APPS_JULIA_CMD="$(command -v julia)"
+        fi
+        jetls version
+        jetls check --quiet --root=. --exit-severity=hint --show-severity=hint --progress=none $JETLS_FILES

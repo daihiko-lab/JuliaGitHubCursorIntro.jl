@@ -1,6 +1,6 @@
-# 02. Julia 入門（REPL・読み込み・集計・図）
+# 02. Julia 入門 (REPL・読み込み・集計・図) 
 
-所要の目安: **約30分**（パッケージの話は [docs/03_packages.md](03_packages.md) で別途）
+所要の目安: **約30分** (パッケージの話は [docs/03_packages.md](03_packages.md) で別途) 
 
 この章では、REPL の基本と、このリポジトリの **架空 CSV** を読み込んで集計し、棒グラフを保存するまでを体験します。
 
@@ -10,7 +10,7 @@
 
 ### ターミナルから
 
-リポジトリのルート（`Project.toml` がある場所）で:
+リポジトリのルート (`Project.toml` がある場所) で:
 
 ```bash
 julia
@@ -20,18 +20,18 @@ julia
 
 ### Cursor から
 
-- コマンドパレットで「Julia: Start REPL」など（拡張機能のメニュー）
+- コマンドパレットで「Julia: Start REPL」など (拡張機能のメニュー) 
 - またはターミナルで `julia` を実行
 
-**終了**: `Ctrl + D`（Mac は同様）または `exit()` と入力
+**終了**: `Ctrl + D` (Mac は同様) または `exit()` と入力
 
 ---
 
-## 2. REPL のモード（覚えておくと便利）
+## 2. REPL のモード (覚えておくと便利) 
 
 | キー / 操作 | モード | 用途 |
 |-------------|--------|------|
-| `]` | Pkg モード `pkg>` | パッケージの追加など（次章） |
+| `]` | Pkg モード `pkg>` | パッケージの追加など (次章) |
 | `?` | ヘルプモード `help?>` | `?println` のように関数の説明 |
 | `;` | シェルモード `shell>` | `;ls` のように OS コマンド |
 | Backspace | `julia>` に戻る | |
@@ -54,9 +54,9 @@ x + y
 name = "ゼミ"
 println("こんにちは, ", name)
 
-# ベクトル（配列に近い）
+# ベクトル (配列に近い) 
 scores = [4.2, 3.8, 5.1]
-mean(scores)   # 平均（Statistics が要る場合は using Statistics）
+mean(scores) # 平均 (Statistics が要る場合は using Statistics) 
 ```
 
 `mean` を使うには:
@@ -76,7 +76,7 @@ Julia は **1始まり** のインデックスです: `scores[1]` が最初の�
 
 ```julia
 using Pkg
-Pkg.activate(".")   # または起動時に ] activate .
+Pkg.activate(".") # または起動時に ] activate .
 ```
 
 `pkg>` なら:
@@ -85,7 +85,7 @@ Pkg.activate(".")   # または起動時に ] activate .
 ] activate .
 ```
 
-パッケージを初めて入れるとき（事前準備で済ませていなければ）:
+パッケージを初めて入れるとき (事前準備で済ませていなければ) :
 
 ```
 ] instantiate
@@ -97,14 +97,14 @@ Pkg.activate(".")   # または起動時に ] activate .
 
 ## 5. ハンズオン: CSV を読んで集計する
 
-データは **架空** です（`data/survey_responses.csv`）。列の意味:
+データは **架空** です (`data/survey_responses.csv`) 。列の意味:
 
-| 列名 | 内容（架空） |
+| 列名 | 内容 (架空) |
 |------|----------------|
 | `participant_id` | 参加者 ID |
 | `condition` | `control` または `experimental` |
 | `score` | 1–7 想定のスコア |
-| `response_ms` | 反応時間（ミリ秒） |
+| `response_ms` | 反応時間 (ミリ秒) |
 
 ### REPL でステップ実行
 
@@ -116,9 +116,9 @@ using Statistics
 path = joinpath("data", "survey_responses.csv")
 df = CSV.read(path, DataFrame)
 
-first(df, 5)      # 先頭5行
-names(df)         # 列名
-nrow(df)          # 行数
+first(df, 5) # 先頭5行
+names(df) # 列名
+nrow(df) # 行数
 ```
 
 **条件ごとの平均スコア**:
@@ -129,7 +129,7 @@ gdf = groupby(df, :condition)
 result = combine(gdf, :score => mean => :mean_score, nrow => :n)
 ```
 
-`result` を表示して、`experimental` と `control` の違いを眺めてみましょう（架空データなので「意味のある差」とは限りません）。
+`result` を表示して、`experimental` と `control` の違いを眺めてみましょう (架空データなので「意味のある差」とは限りません) 。
 
 ---
 
@@ -142,7 +142,7 @@ conditions = result.condition
 means = result.mean_score
 
 p = bar(conditions, means; ylabel="平均スコア", xlabel="条件",
-        title="条件ごとの平均スコア（架空データ）", legend=false)
+        title="条件ごとの平均スコア (架空データ) ", legend=false)
 
 mkpath("output")
 savefig(p, joinpath("output", "mean_score_by_condition.png"))

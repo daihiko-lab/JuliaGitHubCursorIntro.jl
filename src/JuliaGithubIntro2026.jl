@@ -6,6 +6,6 @@
 """
 module JuliaGithubIntro2026
 
-greet() = "Julia / GitHub 入門（2026）"
+greet() = "Julia / GitHub 入門 (2026) "
 
 end # module

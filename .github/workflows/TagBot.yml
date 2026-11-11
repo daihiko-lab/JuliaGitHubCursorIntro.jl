@@ -1,4 +1,4 @@
-# General レジストリ登録後にタグ・Release を自動化する設定（DistSSHRun.jl 参考）。
+# General レジストリ登録後にタグ・Release を自動化する設定 (DistSSHRun.jl 参考) 。
 # 本教材リポジトリは General 未登録のため、通常は JuliaTagBot から起動されません。
 # オーナーが将来パッケージ化したときの雛形として置いています。
 name: TagBot

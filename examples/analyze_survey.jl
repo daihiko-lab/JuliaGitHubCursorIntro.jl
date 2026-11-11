@@ -1,5 +1,5 @@
 #!/usr/bin/env julia
-# 架空アンケートデータの読み込み・集計・可視化の例（docs/02_julia_basics.md と対応）
+# 架空アンケートデータの読み込み・集計・可視化の例 (docs/02_julia_basics.md と対応) 
 
 using CSV
 using DataFrames
@@ -27,7 +27,7 @@ function main()
         by_condition.mean_score;
         ylabel = "平均スコア",
         xlabel = "条件",
-        title = "条件ごとの平均スコア（架空データ）",
+        title = "条件ごとの平均スコア (架空データ) ",
         legend = false,
     )
     savefig(p, out_path)

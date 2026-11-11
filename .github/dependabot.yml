@@ -13,7 +13,7 @@ updates:
         patterns:
           - "*"
 
-  # CompatHelper ワークフローの代わりに Julia 依存の更新 PR（DistSSHRun.jl と同方針）
+  # CompatHelper ワークフローの代わりに Julia 依存の更新 PR (DistSSHRun.jl と同方針) 
   - package-ecosystem: julia
     directory: "/"
     schedule:

@@ -77,8 +77,8 @@ Manifest だけあっても、**Julia のマイナーバージョンやビルド
 
 - **`Project.toml` の `julia = "…"` (`[compat]`)** … 使った Julia の系列を明示
 - **README や `juliaup` の設定** … 開発者・CI が同じ系列を使う  
-  - 例: [juliaup](https://github.com/JuliaLang/juliaup) で `julia +1.13` のようにチャンネルを固定し、プロジェクト用に `juliaup override set 1.13` など (手順は juliaup のドキュメント参照) 
-- **CI (GitHub Actions)** … `setup-julia` で **`1.13` のようにピン** する (本教材の CI も JETLS 用に 1.13 を使っています) 
+  - 例: [juliaup](https://github.com/JuliaLang/juliaup) でチャンネルを固定し、プロジェクト用に `juliaup override set` で **`Project.toml` の `[compat]` の `julia` と同じ系列** に揃える (手順は juliaup のドキュメント参照) 
+- **CI (GitHub Actions)** … `setup-julia` で **`Project.toml` の `[compat]` の `julia` と同じ系列** をピンする (本教材は [`.github/workflows/CI.yml`](../.github/workflows/CI.yml) を参照) 
 
 「Manifest + Julia 版 + (できれば) OS」までセットで記録すると、再現の成功率が上がります。
 

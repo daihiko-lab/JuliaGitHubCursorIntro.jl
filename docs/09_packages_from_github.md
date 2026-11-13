@@ -6,7 +6,7 @@
 
 本教材リポジトリ自体も General には登録しません ( [03_packages.md](03_packages.md) 参照) 。**依存として** 別の GitHub 上の `.jl` リポジトリを `add` する手順がこの章の主題です。
 
-公式の仕様は [Pkg.jl — Managing Packages (Adding unregistered packages) ](https://pkgdocs.julialang.org/v1/managing-packages/#Adding-unregistered-packages) および [API `Pkg.add`](https://pkgdocs.julialang.org/v1/api/#Pkg.add) を参照してください。本稿の API 名やフィールド名は Julia **1.13** 系の Pkg 公式ドキュメントに沿って記しています (本教材 CI も JETLS で 1.13 を使用) 。
+公式の仕様は [Pkg.jl — Managing Packages (Adding unregistered packages) ](https://pkgdocs.julialang.org/v1/managing-packages/#Adding-unregistered-packages) および [API `Pkg.add`](https://pkgdocs.julialang.org/v1/api/#Pkg.add) を参照してください。本稿の API 名やフィールド名は、本教材ルートの **`Project.toml` の `[compat]` にある `julia` の系列** の Pkg 公式ドキュメントに沿って記しています (CI の JETLS も同系列を使用) 。
 
 ---
 
@@ -74,7 +74,7 @@ Pkg.add(url = "https://github.com/daihiko-lab/SomePackage.jl")
 `Pkg.add(url = "https://github.com/daihiko-lab/SomePackage.jl", rev = "v1.0.0")` のあと、`status` ではおおむね次のように URL と ref が表示されます。
 
 ```
-SomePackage v0.1.0 `https://github.com/daihiko-lab/SomePackage.jl#v1.0.0`
+SomePackage v1.0.0 `https://github.com/daihiko-lab/SomePackage.jl#v1.0.0`
 ```
 
 `Manifest.toml` には `repo-rev = "v1.0.0"` が記録されます ( §6 参照) 。
@@ -131,7 +131,7 @@ SomePackage = { url = "https://github.com/daihiko-lab/SomePackage.jl", rev = "ma
 
 **なぜ便利か**: Manifest を Git に含めない方針でも、**URL と ref だけ** を `Project.toml` に残せ、`] instantiate` のときに同じ Git ソースから取り直せます (登録パッケージだけの環境では Manifest なしでも `[compat]` だけで足りる、という話は [03_packages.md](03_packages.md) §5 との対比) 。
 
-**Julia の版**: `[sources]` は **1.11+** 必須です。本教材の CI は **JETLS に Julia 1.13** を使っています ( [README](../README.md) 、 [05_ci.md](05_ci.md)) 。参加者は **1.11 未満** だと `[sources]` を読めず、Manifest や手動 `add` に頼る必要があります。
+**Julia の版**: `[sources]` は **Julia 1.11 以降** で使える機能です。本教材で使う Julia の系列は、ルートの **`Project.toml` の `[compat]` の `julia`** を満たすこと (CI の詳細は [05_ci.md](05_ci.md) 、 [README](../README.md)) 。Julia が 1.11 未満だと `[sources]` を読めず、Manifest や手動 `add` に頼る必要があります。
 
 ---
 

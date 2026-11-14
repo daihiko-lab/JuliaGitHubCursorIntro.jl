@@ -13,8 +13,10 @@
 リポジトリのルート (`Project.toml` がある場所) で:
 
 ```bash
-julia
+julia --project=.
 ```
+
+`--project=.` を付けると **このフォルダのプロジェクト環境** で REPL が開きます (`julia` だけだとグローバル環境 `@v1.x` になり、後の `using JuliaGitHubCursorIntro` などが失敗しやすいです) 。事前準備の詳細は [docs/01_setup.md](01_setup.md) §6 も参照してください。
 
 プロンプトが `julia>` になれば REPL です。
 
@@ -72,12 +74,12 @@ Julia は **1始まり** のインデックスです: `scores[1]` が最初の�
 
 ## 4. プロジェクトを有効にする
 
-このリポジトリは **Julia プロジェクト** です。ルートで REPL を開いたら:
+このリポジトリは **Julia プロジェクト** です。ルートで作業するときは、次のどちらかで **必ずこのフォルダを環境にする** ようにします。
 
-```julia
-using Pkg
-Pkg.activate(".") # または起動時に ] activate .
-```
+| やり方 | 操作 |
+|--------|------|
+| ターミナル | `julia --project=.` で起動 (§1) |
+| すでに REPL を開いている | `] activate .` または `Pkg.activate(".")` |
 
 `pkg>` なら:
 
@@ -156,11 +158,15 @@ savefig(p, joinpath("output", "mean_score_by_condition.png"))
 
 同じ処理はパッケージ **`JuliaGitHubCursorIntro`** にまとめてあり、`examples/analyze_survey.jl` から呼び出します (**General には登録しない** 教材用パッケージです) 。
 
+ルートで:
+
 ```bash
-julia examples/analyze_survey.jl
+julia --project=. examples/analyze_survey.jl
 ```
 
-REPL から直接試す場合:
+スクリプト内でも `Pkg.activate` していますが、**依存はプロジェクト環境に入っている必要** があります。先に `] instantiate` (または `julia --project=. -e 'using Pkg; Pkg.instantiate()'`) を済ませてください。
+
+REPL から直接試す場合 (ルートで `julia --project=.` を推奨) :
 
 ```julia
 ] activate .
@@ -171,8 +177,9 @@ JuliaGitHubCursorIntro.run_survey_analysis!()
 
 エラーが出たときは:
 
-- `] activate .` と `] instantiate` をしたか
-- カレントディレクトリがリポジトリのルートか (`examples/` からスクリプトを叩く場合も、スクリプト側でプロジェクトを有効化しています) 
+- ターミナルから実行しているなら **`julia --project=.`** を付けているか (または REPL で `] activate .` したか) 
+- `] instantiate` を済ませたか
+- カレントディレクトリがリポジトリのルートか
 
 を確認してください。
 

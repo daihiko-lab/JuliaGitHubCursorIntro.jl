@@ -143,13 +143,20 @@ git config --global --list
 
 教材リポジトリを clone する前に、次ができれば当日スムーズです。
 
+**clone 後はリポジトリのルート** に移動してから作業します。この教材はルートの `Project.toml` で依存関係とパッケージ名を管理しているため、Julia は **必ずそのプロジェクト環境** で動かします。
+
+- **ターミナルからスクリプトを実行するとき**: `julia --project=.` を付ける (ルートで実行) 
+- **Julia REPL で作業するとき**: `julia` を起動したあと `] activate .` する
+
+`julia examples/...` のように `--project=.` を付けずに実行すると、既定のグローバル環境 (`@v1.x`) として動き、`JuliaGitHubCursorIntro` や CSV などが見つからず失敗しやすいです。下の表では、ターミナル用のコマンドは `--project=.` 付きで書いています。
+
 | 項目 | コマンド・操作 | 期待する結果 |
 |------|----------------|--------------|
 | Git | `git --version` | バージョンが表示される |
 | Julia | `julia --version` | `[compat]` の `julia` を満たすバージョンが表示される |
 | このリポジトリ | コラボレーター招待を承認 | GitHub 上でリポジトリが見える |
-| パッケージ (clone 後) | Julia で `] activate .` → `] instantiate` | エラーなく終わる |
-| サンプル実行 | `julia examples/analyze_survey.jl` | 集計が表示され、`output/` に PNG ができる |
+| パッケージ (clone 後) | ルートで Julia を `julia --project=.` で起動 → `] instantiate` (または REPL で `] activate .` → `] instantiate`) | エラーなく終わる |
+| サンプル実行 | ルートで `julia --project=. examples/analyze_survey.jl` (上の `instantiate` 済み) | 集計が表示され、`output/` に PNG ができる |
 
 clone 手順は [docs/04_git_github.md](04_git_github.md) で当日も行います。事前に済ませても構いません。
 

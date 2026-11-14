@@ -25,7 +25,7 @@ end
     @test !isempty(files)
     for f in files
         path = joinpath(submissions_dir, f)
-        @testset f begin
+        @testset "$f" begin
             mod = Module()
             @test_nowarn Base.include(mod, path)
             @test isdefined(mod, :my_mean)

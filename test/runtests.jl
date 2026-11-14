@@ -1,5 +1,6 @@
 using Aqua
 using JuliaGitHubCursorIntro
+using Statistics
 using Test
 
 @testset "Aqua" begin
@@ -23,6 +24,13 @@ end
     files = filter(re -> endswith(re, ".jl"), readdir(submissions_dir))
     @test !isempty(files)
     for f in files
-        @test_nowarn include(joinpath(submissions_dir, f))
+        path = joinpath(submissions_dir, f)
+        @testset "$f" begin
+            mod = Module()
+            @test_nowarn Base.include(mod, path)
+            @test isdefined(mod, :my_mean)
+            sample = [1.0, 2.0, 3.0, 4.0, 5.0]
+            @test Base.invokelatest(mod.my_mean, sample) ≈ mean(sample)
+        end
     end
 end

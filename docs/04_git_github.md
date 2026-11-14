@@ -89,7 +89,7 @@ git switch -c feat/mean-yourusername
 ### 書く内容 (例)
 
 - 平均関数: `my_mean(x) = sum(x) / length(x)` 程度でよい
-- 末尾に呼び出し例 (例: `my_mean([1, 2, 3, 4, 5])`) を置くと、CI が `include` したときにも動作確認しやすい
+- 末尾に呼び出し例 (例: `my_mean([1, 2, 3, 4, 5])`) を置くと、そのファイルを `include` したときに動作確認しやすい (CI テストは各提出物を **別モジュール** に読み込み、`my_mean` の結果を検証します) 
 
 Julia の編集は Cursor 上で問題ありません。
 

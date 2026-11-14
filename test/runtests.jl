@@ -20,7 +20,11 @@ end
 
 @testset "submissions" begin
     submissions_dir = joinpath(pkgdir(JuliaGitHubCursorIntro), "submissions")
-    files = filter(re -> endswith(re, ".jl"), readdir(submissions_dir))
+    # example_githubuser.jl は教材見本 (README: 提出物ではない) 。include の重複定義警告を避ける
+    files = filter(
+        re -> endswith(re, ".jl") && re != "example_githubuser.jl",
+        readdir(submissions_dir),
+    )
     @test !isempty(files)
     for f in files
         @test_nowarn include(joinpath(submissions_dir, f))

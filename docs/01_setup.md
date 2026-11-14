@@ -92,7 +92,7 @@ julia --version
 
 ### 推奨バージョン
 
-この教材は **Julia 1.10 以上** を想定しています (`Project.toml` の `[compat]` 参照) 。`juliaup` を使っている場合:
+この教材は、ルートの **`Project.toml` の `[compat]` にある `julia` のバージョン以上** の Julia を想定しています。`juliaup` を使っている場合:
 
 ```bash
 juliaup add release
@@ -146,7 +146,7 @@ git config --global --list
 | 項目 | コマンド・操作 | 期待する結果 |
 |------|----------------|--------------|
 | Git | `git --version` | バージョンが表示される |
-| Julia | `julia --version` | 1.10 以上などが表示される |
+| Julia | `julia --version` | `[compat]` の `julia` を満たすバージョンが表示される |
 | このリポジトリ | コラボレーター招待を承認 | GitHub 上でリポジトリが見える |
 | パッケージ (clone 後) | Julia で `] activate .` → `] instantiate` | エラーなく終わる |
 | サンプル実行 | `julia examples/analyze_survey.jl` | 集計が表示され、`output/` に PNG ができる |

@@ -44,13 +44,13 @@ function run_survey_analysis!()
     p = bar(
         by_condition.condition,
         by_condition.mean_score;
-        ylabel = "平均スコア",
-        xlabel = "条件",
-        title = "条件ごとの平均スコア (架空データ) ",
+        ylabel = "Mean score",
+        xlabel = "Condition",
+        title = "Mean score by condition (fictional data)",
         legend = false,
     )
     savefig(p, out_path)
-    println("図を保存しました: ", out_path)
+    println("Saved figure: ", out_path)
     return out_path
 end
 

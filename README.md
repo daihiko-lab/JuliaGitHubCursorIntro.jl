@@ -32,7 +32,7 @@
 | 0:10–0:25 | 環境チェック (下記「最初にやること」参照) |
 | 0:25–0:55 | Julia 入門 (うち約10分はパッケージ管理) |
 | 0:55–1:05 | 休憩・フォロー |
-| 1:05–1:40 | Git/GitHub ハンズオン (clone → branch → commit → push → PR) |
+| 1:05–1:40 | Git/GitHub ハンズオン (clone → PR → ペアレビュー → コンフリクト体験。4 ステップは [submissions/README.md](submissions/README.md)) |
 | 1:40–1:50 | CI デモ (オーナー設置の CI を **見るだけ**。設定の参考: [DistSSHRun.jl](https://github.com/yamanori99/DistSSHRun.jl)) |
 | 1:50–2:00 | タグ・リリースの概要 (**デモのみ**) 、Cursor の AI 機能紹介、まとめ |
 
@@ -49,7 +49,7 @@
 | [docs/07_github_for_julia.md](docs/07_github_for_julia.md) | Julia 向け GitHub 機能コラム (**発展・読み物**) |
 | [docs/08_licensing.md](docs/08_licensing.md) | ライセンスの基礎 (コード・データ・Zenodo) |
 | [docs/09_packages_from_github.md](docs/09_packages_from_github.md) | General 未登録パッケージを GitHub から `add` する |
-| [submissions/README.md](submissions/README.md) | **PR 課題**の説明 |
+| [submissions/README.md](submissions/README.md) | **PR ハンズオン課題** (4 ステップ) |
 
 ## 参加者が最初にやること
 

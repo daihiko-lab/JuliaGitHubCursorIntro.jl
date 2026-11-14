@@ -1,8 +1,8 @@
 # 見本ファイル (PR 課題の提出物ではありません)
 
-function introduce()
-    println("表示名: サンプルユーザー")
-    return println("一言: これは見本です。自分用のファイルを新しく作って PR してください。")
+"""配列 x の算術平均を返す (教材用の最小例) """
+function my_mean(x)
+    return sum(x) / length(x)
 end
 
-introduce()
+my_mean([1, 2, 3, 4, 5])

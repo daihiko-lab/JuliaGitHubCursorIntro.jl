@@ -31,11 +31,11 @@ output_dir() = joinpath(pkg_root(), "output")
 function run_survey_analysis!()
     df = CSV.read(survey_data_path(), DataFrame)
 
-    println("行数: ", nrow(df))
-    println("列名: ", names(df))
+    println("Number of rows: ", nrow(df))
+    println("Column names: ", names(df))
 
     by_condition = combine(groupby(df, :condition), :score => mean => :mean_score, nrow => :n)
-    println("\n条件ごとの平均スコア:")
+    println("\nMean score by condition:")
     show(by_condition; allcols = true, allrows = true)
     println()
 

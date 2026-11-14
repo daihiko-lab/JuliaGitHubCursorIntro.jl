@@ -4,6 +4,8 @@
 
 Julia のライブラリは **パッケージ** として配布されます。日常的に使う操作は次のとおりです。
 
+この教材リポジトリでは、**ルートの `Project.toml` で依存関係を管理** します。ターミナルから Julia を起動・スクリプトを実行するときは **`julia --project=.`** を付けます (REPL だけなら起動後に `] activate .` でも同じです) 。[docs/01_setup.md](01_setup.md) §6 も参照してください。
+
 ---
 
 ## 1. Pkg モードに入る
@@ -25,6 +27,14 @@ REPL で **`]`** (右角括弧) を押すと、プロンプトが `pkg>` にな�
 | `activate .` | **このフォルダ** をプロジェクト環境にする |
 | `instantiate` | `Project.toml` に書かれた依存をインストール |
 
+ターミナルだけ使うときの対応:
+
+| やりたいこと | コマンド例 (ルートで) |
+|--------------|------------------------|
+| REPL を開く | `julia --project=.` |
+| 依存を入れる | `julia --project=. -e 'using Pkg; Pkg.instantiate()'` |
+| サンプルスクリプト | `julia --project=. examples/analyze_survey.jl` |
+
 この教材リポジトリは **Julia パッケージ風** (`src/JuliaGitHubCursorIntro.jl`、名前 **`JuliaGitHubCursorIntro`**) ですが、**General には登録しません** (ゼミ用に clone + `activate` するだけ) 。`Project.toml` には **CSV, DataFrames, Plots, Statistics** (Statistics は標準ライブラリですが、Julia の新しいバージョンでは明示的に依存へ書くことがあります) が書かれています。初回は:
 
 ```
@@ -43,7 +53,7 @@ REPL で **`]`** (右角括弧) を押すと、プロンプトが `pkg>` にな�
 - プロジェクト A と B で **別バージョン** が必要なときに衝突しやすい
 - 再現性のある共有 (GitHub 上の `Project.toml`) とズレやすい
 
-**習慣**: リポジトリのルートで `] activate .` してから作業する。
+**習慣**: リポジトリのルートで **`julia --project=.`** するか、REPL なら **`] activate .`** してから作業する。
 
 ---
 
@@ -102,7 +112,7 @@ Manifest だけあっても、**Julia のマイナーバージョンやビルド
 ## 7. 確認クイズ (自分用) 
 
 1. 今の環境を確認する `pkg>` コマンドは？ → `status`  
-2. チームメンバーが clone したあと最初に打つべきは？ → `activate .` と `instantiate`  
+2. チームメンバーが clone したあと最初に打つべきは？ → ルートで `julia --project=.` (または `] activate .`) と `instantiate`    
 3. 新しいパッケージを **この教材に** 追加したいときは？ → `add パッケージ名` (`Project.toml` が更新される) 
 
 ---
